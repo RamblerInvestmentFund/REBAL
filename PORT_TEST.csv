@@ -1,0 +1,12 @@
+Number,Ticker,Weight,Group,Group Min,Group Max,Group Type,Start Time,End Time,Period,Ind Min,Ind Max,Risk Aversion,Directory
+1,AAPL,,TECH,0.15,0.3,sum,1/1/2016,6/2/2019,day,0.05,0.2,2,C:\Users\patdj\Documents\RIF\GUI
+2,GOOG,,TECH,0.15,0.3,sum,,,,,,,
+3,FB,,TECH,0.15,0.3,sum,,,,,,,
+4,AMZN,,TECH,0.15,0.3,sum,,,,,,,
+5,MCD,,CONS,0.3,0.45,box,,,,,,,
+6,WMT,,CONS,0.3,0.45,box,,,,,,,
+7,COST,,CONS,0.2,0.4,box,,,,,,,
+8,TLT,,FIXED,0.2,0.4,box,,,,,,,
+9,SHY,,FIXED,0.2,0.4,box,,,,,,,
+10,SNAP,0.01,-,-,-,-,,,,,,,
+11,TSLA,0.01,-,-,-,-,,,,,,,
