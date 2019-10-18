@@ -17,6 +17,7 @@ library(tidyr)
 
 
 setwd("C:\\Users\\patdj\\Documents\\RIF\\data") # sets the working directory
+source("read_settings.R")
 start_date <- "2016-01-01" #Format year-mo-da
 end_date <- substr(Sys.time(), 0, 10) #gets current date
 tar_return <- .1 #target return - 10%
@@ -24,19 +25,11 @@ tar_risk <- .05 #target risk variance - 5%
 alp <- .01 #alpha
 risk_free <- .0275 #risk free rate, treasury
 risk_aversion <- 2 #risk aversion coefficient
-
-tickers <- c("SNAP", "MU", "LVMUY","FMS","GSK",
-             "NGG","AMZN","BAX","BA","CELH",
-             #"XOM","GD","LMT","MDR","MRK","MU","NOC",
-             #"PANW","PXD","RTN","TSLA","VZ","WDC","SYY",
-             #"DIS","ATVI","BMY","UTX","RDS-A","LAKE",
-             "LUV","SPT.L","BLK","SHY","TLT","EMB","MUB",
-             "NLY","UUP","VIXY","IAU")
+###weights <- gen_weights()
+##tickers <- read_settings::settings.tickers
+tickers <- c("TSLA", "MCD", "AMZN", "FB")
 #"maxW[1,2,10,21]=.001",
-weights <- c("minW[c(1:33)]=.001", "maxW[c(1:33)]=.05",
-             "minsumW[c(1:33)]=.6", 
-             "maxsumW[c(34:38)]=.27", "minsumW[c(34:38)]=.19",
-             "minsumW[c(39:41)]=.025", "maxW[c(39:41)]=.01")
+weights <- c("minW[c(1:4)]=.15", "maxW[c(1:4)]=.3")
 
 ######################STEP ONE: Wrangling Data #########################################
 portfolio <- NULL #normally you dont need to declare variables null before using them
@@ -77,7 +70,7 @@ portSpec <- portfolioSpec( #this is where the risk aversion and other parameters
 
 ######################STEP FOUR: PORTFOLIO GENERATION#########################################
 
-#calculates efficient frontier, minimum variance portfolio, effiicent portfolio, minrisk
+#calculates efficient frontier, minimum variance portfolio, effiicent portfolio, mviewinrisk
 effFrontier <- portfolioFrontier(portfolio.returns, spec = portSpec, constraints = weights)
 efmvPort <- minvariancePortfolio(portfolio.returns, spec = portSpec, constraints = weights)
 efficientPort <- efficientPortfolio(portfolio.returns, spec = portSpec, constraints = weights)
@@ -86,3 +79,6 @@ minRiskPort <- minriskPortfolio(portfolio.returns, spec = portSpec, constraints 
 frontierWeights <- getWeights(effFrontier) # get allocations for each instrument for each point on the efficient frontier
 frontierReturns <- getTargetReturn(effFrontier) #generates the return
 frontier <- cbind(frontierWeights, frontierReturns) #formats return and weights into a dataframe
+frontierPorts <- frontier[, 1:4]
+
+######################STEP FIVE: PORTFOLIO PRESENTATION########################################
