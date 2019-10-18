@@ -70,7 +70,7 @@ portSpec <- portfolioSpec( #this is where the risk aversion and other parameters
 
 ######################STEP FOUR: PORTFOLIO GENERATION#########################################
 
-#calculates efficient frontier, minimum variance portfolio, effiicent portfolio, mviewinrisk
+#calculates efficient frontier, minimum variance portfolio, effiicent portfolio, mvinrisk
 effFrontier <- portfolioFrontier(portfolio.returns, spec = portSpec, constraints = weights)
 efmvPort <- minvariancePortfolio(portfolio.returns, spec = portSpec, constraints = weights)
 efficientPort <- efficientPortfolio(portfolio.returns, spec = portSpec, constraints = weights)
