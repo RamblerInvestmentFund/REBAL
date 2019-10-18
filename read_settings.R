@@ -81,3 +81,4 @@ gen_weights <- function(data, weights){
 }
 
 gen_weights(ext_weights, c())
+
