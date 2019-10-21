@@ -1,0 +1,22 @@
+RIF Rebalancing Notes:
+
+- Often times you'll get an error regarding the 'getSymbols' function from the quantmod library.
+  This is often a result of R Studio having connection issues with the source (yahoo finance). 
+  Restart your R Session/R Studio to fix this. 
+  I recommend not saving your R environment for this. 
+
+- > effFrontier <- portfolioFrontier(portfolio.returns, spec = portSpec, constraints = weights)
+Error in `colnames<-`(`*tmp*`, value = names(getMu(Data))) : 
+  attempt to set 'colnames' on an object with less than two dimensions
+
+This error is giving me lots of trouble you'll have to fix it. 
+
+HTTP Error 401: 
+This basically means you've been requesting too much from Yahoo finance in a short amount of time.
+Wait 1 minute, make sure the portfolio object is NULL, and re-run. 
+
+HTTP Error 400:
+This usually means the date format for the start and end date supplied from the excel document is incorrect.
+Reference the template and notes from the excel document. 
+
+
