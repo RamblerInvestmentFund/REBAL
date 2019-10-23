@@ -1,10 +1,9 @@
-'''
-Author: 7Leven
-Purpose: Portfolio Optimization & Risk Analytics
+# Author: 7Leven
+# Purpose: Portfolio Optimization & Risk Analytics
+#
+# Notes from last update:
+# Config area will be removed/made smaller in further updates..
 
-Notes from last update:
-Config area will be removed/made smaller in further updates..
-'''
 library(timeSeries)
 library(fPortfolio)
 library(quantmod)
@@ -13,7 +12,8 @@ library(dplyr)
 library(PerformanceAnalytics)
 library(ggplot2)
 library(tidyr)
-source("C:\\Users\\patdj\\Documents\\RIF\\GUI\\v1\\SETTINGS_v1.R")
+source("C:\\Users\\benka\\Documents\\GitHub\\REBAL\\SETTINGS_v1.R")
+
 ######################      MISC: CONFIG       #########################################
 
 setwd(settings.directory) # sets the working directory
@@ -30,6 +30,7 @@ tickers <- settings.tickers
 weights <- c(settings.weights)
 
 ######################STEP ONE: Wrangling Data #########################################
+
 portfolio <- NULL #normally you dont need to declare variables null before using them
 portfolio.div <- NULL # R's scope requirements make this easier when binding within a loop..
 for(ticker in tickers){ #looping through portfolio, gathering returns & dividends
