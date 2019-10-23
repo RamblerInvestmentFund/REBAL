@@ -1,8 +1,5 @@
-'
-Author: 7Leven
-Purpose: Portfolio Optimization & Risk Analytics
-
-'
+# Author: 7Leven
+# Purpose: Portfolio Optimization & Risk Analytics
 
 library("sqldf")
 library("dplyr")
@@ -10,7 +7,7 @@ library("data.table")
 
 ################# READING sETTINGS #########################
 
-setwd("C:\\Users\\patdj\\Documents\\RIF\\GUI\\v1")
+setwd("C:\\Users\\benka\\Documents\\GitHub\\REBAL")
 settings <- read.csv("RIF_PORT.csv")
 
 settings.directory <- as.character(settings$Directory[1])
@@ -26,6 +23,7 @@ settings.groups <- as.character(unique(settings$Group))
 raw_data <- settings[,1:7]
 
 ################# GENERATING WEIGHTS ######################
+
 # This is a SQL query that helps format and extract the weights from 
 # the excel document. 
 ticker_query <- '
