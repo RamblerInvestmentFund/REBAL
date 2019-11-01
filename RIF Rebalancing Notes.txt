@@ -13,10 +13,20 @@ This error is giving me lots of trouble you'll have to fix it.
 
 HTTP Error 401: 
 This basically means you've been requesting too much from Yahoo finance in a short amount of time.
-Wait 1 minute, make sure the portfolio object is NULL, and re-run. 
+ -> Wait 1 minute, make sure the portfolio object is NULL, and re-run. 
 
 HTTP Error 400:
 This usually means the date format for the start and end date supplied from the excel document is incorrect.
-Reference the template and notes from the excel document. 
+ -> Reference the template and notes from the excel document (format should be YYYY-MM-DD) 
+
+Make sure all working directories are set correctly (in both R files and in RIF_PORT.csv)
+ -> Make sure the RIF_OPTIMIZER_v1.R file is pulling from the SETTINGS_v1.R file [e.g. source("C:\\Users\\..\\REBAL\\SETTINGS_v1.R")]
+
+If you are having issues in generating portfolios, check your constraints.
+Impossible constraints gives errors and too many constraints will decrease the number of possible portfolios that can be generated.
+
+Sum/box has to be consistent across the groups (sectors)
+ -> e.g. all TECH has to be sum or box, cannot mix or match between TECH stocks 
+
 
 

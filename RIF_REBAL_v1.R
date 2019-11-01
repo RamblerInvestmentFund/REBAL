@@ -12,6 +12,7 @@ library(dplyr)
 library(PerformanceAnalytics)
 library(ggplot2)
 library(tidyr)
+library(tidyquant)
 source("C:\\Users\\benka\\Documents\\GitHub\\REBAL\\SETTINGS_v1.R")
 
 ######################      MISC: CONFIG       #########################################
@@ -29,7 +30,7 @@ tickers <- settings.tickers
 
 weights <- c(settings.weights)
 
-######################STEP ONE: Wrangling Data #########################################
+######################STEP TWO: Wrangling Data#########################################
 
 portfolio <- NULL #normally you dont need to declare variables null before using them
 portfolio.div <- NULL # R's scope requirements make this easier when binding within a loop..
@@ -56,7 +57,7 @@ meanReturns <- colMeans(portfolio.returns) #calculating mean return for each tic
 covMat <- cov(portfolio.returns) #covariance matrix
 portfolio.returns <- na.omit(portfolio.returns) # YOU MAY NEED THIS FOR ERRORS BELOW
 
-######################STEP THREE: CONSTRUCTION #########################################
+######################STEP THREE: CONSTRUCTION#########################################
 
 portSpec <- portfolioSpec( #this is where the risk aversion and other parameters are input
   model = list(type = "MV", optimize = "minRisk",
