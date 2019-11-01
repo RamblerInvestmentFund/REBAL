@@ -20,12 +20,11 @@ settings.ind_max <- settings$Ind.Max[1]
 settings.tickers <- as.character(settings$Ticker)
 settings.groups <- as.character(unique(settings$Group))
 
-raw_data <- settings[,1:7]
+raw_data <- settings[,1:7] #only capturing first 7 columns of the csv, columns after 7 are separated out
 
 ################# GENERATING WEIGHTS ######################
 
-# This is a SQL query that helps format and extract the weights from 
-# the excel document. 
+# This is a SQL query that helps format and extract the weights from the excel document. 
 ticker_query <- '
                 SELECT "Group", "Group.Type",  Number AS gSTART, Number AS gEND, "Group.Min", "Group.Max", "Weight" FROM raw_data WHERE "Group" = "-"
                 UNION
