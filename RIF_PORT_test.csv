@@ -1,0 +1,8 @@
+Number,Ticker,Weight,Group,Group Min,Group Max,Group Type,Start Time,End Time,Period,Ind Min,Ind Max,Risk Aversion,Directory
+1,FDN,,TECH,0.2,0.4,sum,2016-1-1,2019-1-1,day,0.01,0.25,2,C:\Users\benka\Documents\GitHub\REBAL
+2,QQQ,,TECH,0.2,0.4,sum,,,,,,,
+3,MCD,,CONS,0.2,0.4,box,,,,,,,
+4,WMT,,CONS,0.2,0.4,box,,,,,,,
+5,TLT,,FIXED,0.2,0.4,sum,,,,,,,
+6,SHY,,FIXED,0.2,0.4,sum,,,,,,,
+7,TSLA,0.02,-,-,-,-,,,,,,,
