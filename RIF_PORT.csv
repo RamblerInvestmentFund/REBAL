@@ -36,5 +36,4 @@ Number,Ticker,Weight,Group,Group Min,Group Max,Group Type,Start Time,End Time,Pe
 35,SNAP,,EQU,0.2,0.8,sum,,,,,,,
 36,WDC,,EQU,0.2,0.8,sum,,,,,,,
 37,NGG,,EQU,0.2,0.8,sum,,,,,,,
-38,RDS-A,,EQU,0.2,0.8,sum,,,,,,,
-39,TSLA,0.01,-,-,-,-,,,,,,,
+38,TSLA,0.01,-,-,-,-,,,,,,,

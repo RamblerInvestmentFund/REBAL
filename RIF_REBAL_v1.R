@@ -72,10 +72,11 @@ portSpec <- portfolioSpec( #this is where the risk aversion and other parameters
 ######################STEP FOUR: PORTFOLIO GENERATION#########################################
 
 #calculates efficient frontier, minimum variance portfolio, effiicent portfolio, minrisk
-effFrontier <- portfolioFrontier(portfolio.returns, spec = portSpec, constraints = weights)
+effFrontier <- portfolioFrontier(data = portfolio.returns, spec = portSpec, constraints = weights)
 efmvPort <- minvariancePortfolio(portfolio.returns, spec = portSpec, constraints = weights)
 efficientPort <- efficientPortfolio(portfolio.returns, spec = portSpec, constraints = weights)
 minRiskPort <- minriskPortfolio(portfolio.returns, spec = portSpec, constraints = weights)
+
 #the above functions work, but with new constraints added in, I need more memory to get more results
 frontierWeights <- getWeights(effFrontier) # get allocations for each instrument for each point on the efficient frontier
 frontierReturns <- getTargetReturn(effFrontier) #generates the return
