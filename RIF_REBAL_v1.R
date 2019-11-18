@@ -35,7 +35,7 @@ weights <- c(settings.weights)
 portfolio <- NULL #normally you dont need to declare variables null before using them
 portfolio.div <- NULL # R's scope requirements make this easier when binding within a loop..
 for(ticker in tickers){ #looping through portfolio, gathering returns & dividends
-  portfolio <- cbind(portfolio, getSymbols(ticker, from = start_date, to = end_date, auto.assign =  FALSE)[,6])
+  portfolio <- cbind(portfolio, getSymbols(ticker, from = start_date, to = end_date, src = "yahoo", auto.assign =  FALSE)[,6])
   portfolio.div <- cbind(portfolio.div, getDividends(ticker,from = start_date, to = end_date, auto.assign =  FALSE))
 }
 colnames(portfolio) <- tickers #making the dataframes look pretty
@@ -43,14 +43,14 @@ names(portfolio.div) <- gsub(".div", "", names(portfolio.div))
 
 portfolio.yield <- colSums(portfolio.div, na.rm = TRUE) #calculating dividend yield
 portfolio.yield <- as.data.frame(t(portfolio.yield)) #converting to row
-portfolio.yield$MINT <- NULL #removing cash yield - placeholde
+portfolio.yield$MINT <- NULL #removing cash yield - placeholder
 
 for(ticker in names(portfolio.yield)){ #adding dividends into total return. 
   portfolio[nrow(portfolio), ticker] <- as.double(portfolio[nrow(portfolio), ticker]) + as.double(portfolio.yield[ticker])
 }
 
 portfolio.returns <- CalculateReturns(portfolio) #calculating returns with dividends added
-portfolio <- na.omit(portfolio) #removing empty/NA values
+portfolio.returns <- na.omit(portfolio.returns) #removing empty/NA values
 portfolio.returns <- as.timeSeries(portfolio.returns) #converting to time series, required below
 
 meanReturns <- colMeans(portfolio.returns) #calculating mean return for each ticker 
@@ -72,11 +72,13 @@ portSpec <- portfolioSpec( #this is where the risk aversion and other parameters
 ######################STEP FOUR: PORTFOLIO GENERATION#########################################
 
 #calculates efficient frontier, minimum variance portfolio, effiicent portfolio, minrisk
-effFrontier <- portfolioFrontier(portfolio.returns, spec = portSpec, constraints = weights)
+effFrontier <- portfolioFrontier(data = portfolio.returns, spec = portSpec, constraints = weights)
 efmvPort <- minvariancePortfolio(portfolio.returns, spec = portSpec, constraints = weights)
 efficientPort <- efficientPortfolio(portfolio.returns, spec = portSpec, constraints = weights)
 minRiskPort <- minriskPortfolio(portfolio.returns, spec = portSpec, constraints = weights)
+
 #the above functions work, but with new constraints added in, I need more memory to get more results
 frontierWeights <- getWeights(effFrontier) # get allocations for each instrument for each point on the efficient frontier
 frontierReturns <- getTargetReturn(effFrontier) #generates the return
-frontier <- cbind(frontierWeights, frontierReturns) #formats return and weights into a dataframe
+frontierRisk <- getTargetRisk(effFrontier)
+frontier <- cbind(frontierWeights, frontierReturns, frontierRisk) #formats weights, returns, and risk into a dataframe
